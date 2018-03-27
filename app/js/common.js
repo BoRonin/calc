@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function(){
             text[8] = lastLetters[2];
             const finalText = text.join('');
             console.log(finalText);
-            profileSelect.value = finalText;
+            profileSelect[i].value = finalText;
+            profileSelect[i].innerHTML = finalText;
 
         }
 
