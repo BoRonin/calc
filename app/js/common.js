@@ -1,15 +1,39 @@
 document.addEventListener('DOMContentLoaded', function(){
     console.log("hi");
-    const CalcButton = document.querySelector('.calcButton');
-    CalcButton.addEventListener("click", () => prod(allProds));
+    // const CalcButton = document.querySelector('.calcButton');
+    // CalcButton.addEventListener("click", () => prod(allProds));
+    //
+    // const Calc2Button = document.querySelector('.deleteAllInCart');
+    // Calc2Button.addEventListener("click", () => {
+    //     clearCart();
+    //     tcart__openCart();
+    // });
+    const calc = document.querySelector('.calc');
 
-    const Calc2Button = document.querySelector('.deleteAllInCart');
-    Calc2Button.addEventListener("click", () => {
-        clearCart();
-        tcart__openCart();
-    });
-
+    const calcButton = document.querySelector('.firstPick');
+    calcButton.addEventListener('click', e => activateFirstPick(e))
 })
+
+function activateFirstPick(e){
+
+    const elem = e.target.closest('.carType');
+    if (! elem ) return
+
+    const elemparent = e.path[2];
+
+    const hasClass = (elem.classList.contains("activeFirstPick"));
+    elem.classList.add("activeFirstPick");
+    if (hasClass) {
+        console.log("has activeFirstPick class");
+    } else {
+        elem.classList.add("activeFirstPick")
+        const typeCircle = document.querySelector('.statusLineStepOne');
+        typeCircle.classList.add('statusLineStepActive');
+        typeCircle.innerHTML = `&#10004; <span>Тип </span>`;
+        console.log(typeCircle);
+
+    }
+}
 
 
 const allProds = [{
