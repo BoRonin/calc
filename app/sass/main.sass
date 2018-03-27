@@ -42,11 +42,12 @@
         height: 70px
         border-radius: 50%
         border: 1px dashed white
-        margin: 0 10px
+        margin: 0 20px
         position: relative
         align-items: center
         justify-content: center
         background-color: #e8e8e8
+        transition: all 0.25s ease-in-out
         span
             display: block
             position: absolute
@@ -56,6 +57,7 @@
             top: 100%
             font-size: 16px
             color: black
+            transition: all 0.25s ease-in-out
     .statusLineStepActive
         border: 1px solid green
         color: green
@@ -72,45 +74,67 @@
     margin: auto
     padding: 0
     display: flex
+    flex-direction: column
 
+    .carType
+        display: inline-block
+        border: 2px solid #444
+        border-radius: 50%
+        position: relative
+        margin: auto
+        width: 200px
+        height: 200px
+        background-color: #c2c3c4
+        overflow: hidden
+        font-size: 10px
+        text-align: center
 
-.carType
-    display: inline-block
-    border: 2px solid #444
-    border-radius: 50%
-    position: relative
-    margin: auto
-    width: 200px
-    height: 200px
-    background-color: #c2c3c4
-    overflow: hidden
-    font-size: 10px
-    text-align: center
-
-    transition: all .25s ease-in-out
-    h1
-        background-color: rgba(0, 0, 0, 0.3)
-        display: block
-        position: absolute
-        color: #c2c3c4
-        left: 0
-        right: 0
-        padding-top: 10px
-        padding-bottom: 10px
-        margin-top: 20px
         transition: all .25s ease-in-out
-    &:hover
-        box-shadow: 0 0 6px 1px
-        img
-            transform: translateY(-50%) scale(1)
         h1
-            color: white
+            background-color: rgba(0, 0, 0, 0.3)
+            display: block
+            position: absolute
+            color: #c2c3c4
+            left: 0
+            right: 0
+            padding-top: 10px
+            padding-bottom: 10px
+            margin-top: 20px
+            transition: all .25s ease-in-out
+        &:hover
+            box-shadow: 0 0 6px 1px
+            img
+                transform: translateY(-50%) scale(1)
+            h1
+                color: white
 
 
-.centerImg img
-    display: block
-    width: 100%
-    position: absolute
-    top: 50%
-    transform: translateY(-50%) scale(0.9)
-    transition: all .25s ease-in-out
+    .centerImg img
+        display: block
+        width: 100%
+        position: absolute
+        top: 50%
+        transform: translateY(-50%) scale(0.9)
+        transition: all .25s ease-in-out
+
+    .secondPick
+        .secondPickRow
+            width: 100%
+        margin: 30px auto
+        display: flex
+        flex-direction: column
+        width: 100%
+        align-items: center
+        justify-content: center
+        .secondPickChoice
+            display: inline-block
+            margin: 30px 70px
+            position: relative
+            background-color: white
+            span
+                font-size: 10px
+                display: block
+                width: 300%
+                position: absolute
+                left: -100%
+                top: -100%

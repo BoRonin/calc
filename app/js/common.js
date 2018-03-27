@@ -12,7 +12,31 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const calcButton = document.querySelector('.firstPick');
     calcButton.addEventListener('click', e => activateFirstPick(e))
+
+    const colorSelect = document.querySelector('.color');
+    const profileSelect = document.querySelector('.profile');
+    console.log(colorSelect.value);
+    colorSelect.addEventListener('change', function(){
+        const lastLetters = [...colorSelect.value];
+        console.log(colorSelect.value);
+
+        for(let i = 0; i < profileSelect.length; i++) {
+            const prof = profileSelect[i];
+            let text = [...prof.value];
+            console.log(text);
+            text[6] = lastLetters[0];
+            text[7] = lastLetters[1];
+            text[8] = lastLetters[2];
+            const finalText = text.join('');
+            console.log(finalText);
+            profileSelect.value = finalText;
+
+        }
+
+    })
+
 })
+
 
 function activateFirstPick(e){
 
@@ -20,6 +44,7 @@ function activateFirstPick(e){
     if (! elem ) return
 
     const elemparent = e.path[2];
+    const typeText = elem.children[1].innerHTML;
 
     const hasClass = (elem.classList.contains("activeFirstPick"));
     elem.classList.add("activeFirstPick");
@@ -29,7 +54,7 @@ function activateFirstPick(e){
         elem.classList.add("activeFirstPick")
         const typeCircle = document.querySelector('.statusLineStepOne');
         typeCircle.classList.add('statusLineStepActive');
-        typeCircle.innerHTML = `&#10004; <span>Тип </span>`;
+        typeCircle.innerHTML = `&#10004; <span>Тип: ${typeText}</span>`;
         console.log(typeCircle);
 
     }
