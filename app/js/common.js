@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const colorSelect = document.querySelector('.color');
     const profileSelect = document.querySelector('.profile');
+    const kronshSelect = document.querySelector('.kronsh');
+    const endSelect = document.querySelector('.end');
+    const ringSelect = document.querySelector('.ring');
     console.log(colorSelect.value);
     colorSelect.addEventListener('change', function(){
         const lastLetters = [...colorSelect.value];
@@ -22,16 +25,43 @@ document.addEventListener('DOMContentLoaded', function(){
 
         for(let i = 0; i < profileSelect.length; i++) {
             const prof = profileSelect[i];
-            let text = [...prof.value];
-            console.log(text);
+            const text = [...prof.value];
             text[6] = lastLetters[0];
             text[7] = lastLetters[1];
             text[8] = lastLetters[2];
             const finalText = text.join('');
-            console.log(finalText);
             profileSelect[i].value = finalText;
             profileSelect[i].innerHTML = finalText;
-
+        }
+        for (let i = 0; i < kronshSelect.length; i++) {
+            const kron = kronshSelect[i];
+            const text = [...kron.value];
+            text[6] = lastLetters[0];
+            text[7] = lastLetters[1];
+            text[8] = lastLetters[2];
+            const finalText = text.join('');
+            kronshSelect[i].value = finalText;
+            kronshSelect[i].innerHTML = finalText;
+        }
+        for (let i = 0; i < endSelect.length; i++) {
+            const end = endSelect[i];
+            const text = [...end.value];
+            text[6] = lastLetters[0];
+            text[7] = lastLetters[1];
+            text[8] = lastLetters[2];
+            const finalText = text.join('');
+            endSelect[i].value = finalText;
+            endSelect[i].innerHTML = finalText;
+        }
+        for (let i = 0; i < ringSelect.length; i++) {
+            const ring = ringSelect[i];
+            const text = [...ring.value];
+            text[6] = lastLetters[0];
+            text[7] = lastLetters[1];
+            text[8] = lastLetters[2];
+            const finalText = text.join('');
+            ringSelect[i].value = finalText;
+            ringSelect[i].innerHTML = finalText;
         }
 
     })
