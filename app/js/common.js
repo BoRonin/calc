@@ -84,13 +84,26 @@ function activateFirstPick(e){
     } else {
         elem.classList.add("activeFirstPick")
         const typeCircle = document.querySelector('.statusLineStepOne');
+        const typeCircle2 = document.querySelector('.statusLineStepTwo');
+        typeCircle.classList.remove('statusLineStepNext');
         typeCircle.classList.add('statusLineStepActive');
-        typeCircle.innerHTML = `&#10004; <span>Тип: ${typeText}</span>`;
+        typeCircle2.classList.add('statusLineStepNext');
+        typeCircle.innerHTML = `&#10004; <span>Тип<br> ${typeText}</span>`;
         console.log(typeCircle);
-
     }
-}
+        document.querySelector('.firstPick').style.opacity = "0";
+        setTimeout(function () {
+            document.querySelector('.firstPick').style.display = "none";
+        }, 300)
+        setTimeout(function () {
+            appearSecondPick()
+        }, 300);
 
+}
+function appearSecondPick() {
+    document.querySelector('.secondPick').style.display = "flex";
+    setTimeout(()=> document.querySelector('.secondPick').style.opacity = "1", 200 )
+}
 
 const allProds = [{
     amount : 1000,

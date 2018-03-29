@@ -13,11 +13,7 @@
 //     height: 200px
 //     font-size: 3em
 
-.firstPick
-    margin: auto
-    padding: 0
-    .activeFirstPick
-        background-color: #a3a3a3
+
 
 .rightFont
     font-family: 'Open Sans', sans-serif
@@ -47,7 +43,7 @@
         align-items: center
         justify-content: center
         background-color: #e8e8e8
-        transition: all 0.25s ease-in-out
+        transition: all 0.2s ease-in-out
         span
             display: block
             position: absolute
@@ -55,20 +51,21 @@
             right: 0
             left: -50%
             top: 100%
-            font-size: 16px
+            font-size: 1rem
             color: black
             transition: all 0.25s ease-in-out
     .statusLineStepActive
         border: 1px solid green
         color: green
-        font-size: 20px
+        font-size: 25px
+        background-color: rgba(green, 0.2)
         span
-            display: block
-            position: absolute
-            width: 200%
-            right: 0
-            left: -50%
-            top: 100%
+            font-size: 1.1rem
+    .statusLineStepNext
+        border: 1px solid #e8930b
+        color: #e8930b
+        font-size: 25px
+        background-color: rgba(#e8930b, 0.2)
 
 .mainCalc
     margin: auto
@@ -117,11 +114,28 @@
         transform: translateY(-50%) scale(0.9)
         transition: all .25s ease-in-out
 
+    .firstPick
+        margin: auto
+        padding: 0
+        transition: all 0.3s ease-in-out
+        .activeFirstPick
+            background-color: #a3a3a3
+            transform: scale(1.3)
+
     .secondPick
+        transition: all 0.3s ease-in-out
+        select
+            appearance: none
+            border: 2px solid rgba(#7c7c7c, 0.2)
+            border-radius: 2px
+            padding: 0.5em 1.5em
+            background-color: rgba(#7c7c7c, 0.3)
+            width: 200px
         .secondPickRow
             width: 100%
         margin: 30px auto
-        display: flex
+        display: none
+        opacity: 0
         flex-direction: column
         width: 100%
         align-items: center
@@ -132,7 +146,7 @@
             position: relative
             background-color: white
             span
-                font-size: 10px
+                font-size: 13px
                 display: block
                 width: 300%
                 position: absolute
