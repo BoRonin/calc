@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const calcButton = document.querySelector('.firstPick');
     calcButton.addEventListener('click', e => activateFirstPick(e))
 
+    const calcButton2 = document.querySelector('.secondPick');
+    calcButton2.addEventListener('click', e => activateSeconsPick(e))
+
     const colorSelect = document.querySelector('.color');
     const profileSelect = document.querySelector('.profile');
     const kronshSelect = document.querySelector('.kronsh');
@@ -100,8 +103,39 @@ function activateFirstPick(e){
         }, 300);
 
 }
+function activateSecondtPick(e){
+
+    const elem = e.target.closest('.carType');
+    if (! elem ) return
+
+    const elemparent = e.path[2];
+    const typeText = elem.children[1].innerHTML;
+
+    const hasClass = (elem.classList.contains("activeFirstPick"));
+    elem.classList.add("activeFirstPick");
+    if (hasClass) {
+        console.log("has activeFirstPick class");
+    } else {
+        elem.classList.add("activeFirstPick")
+        const typeCircle = document.querySelector('.statusLineStepOne');
+        const typeCircle2 = document.querySelector('.statusLineStepTwo');
+        typeCircle.classList.remove('statusLineStepNext');
+        typeCircle.classList.add('statusLineStepActive');
+        typeCircle2.classList.add('statusLineStepNext');
+        typeCircle.innerHTML = `&#10004; <span>Тип<br> ${typeText}</span>`;
+        console.log(typeCircle);
+    }
+        document.querySelector('.firstPick').style.opacity = "0";
+        setTimeout(function () {
+            document.querySelector('.firstPick').style.display = "none";
+        }, 300)
+        setTimeout(function () {
+            appearSecondPick()
+        }, 300);
+
+}
 function appearSecondPick() {
-    document.querySelector('.secondPick').style.display = "flex";
+    document.querySelector('.secondPick').style.display = "block";
     setTimeout(()=> document.querySelector('.secondPick').style.opacity = "1", 200 )
 }
 
