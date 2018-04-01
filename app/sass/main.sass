@@ -24,13 +24,13 @@
     display: flex
     flex-direction: column
     // background-color: #e0e0e0
-    width: 700px
+    width: 1200px
     height: 700px
     text-align: center
 
 .statusLine
     display: flex
-    margin: 0 auto
+    margin: 2em auto
 
     .statusLineStep
         display: flex
@@ -38,17 +38,17 @@
         height: 70px
         border-radius: 50%
         border: 1px dashed white
-        margin: 0 20px
+        margin: 0 30px
         position: relative
         align-items: center
         justify-content: center
         background-color: #e8e8e8
         transition: all 0.2s ease-in-out
+        text-align: center
         span
             display: block
             position: absolute
             width: 200%
-            right: 0
             left: -50%
             top: 100%
             font-size: 1rem
@@ -68,7 +68,7 @@
         background-color: rgba(#e8930b, 0.2)
 
 .mainCalc
-    margin: auto
+    margin: 50px auto
     padding: 0
     display: flex
     flex-direction: column
@@ -78,20 +78,21 @@
         border: 2px solid #444
         border-radius: 50%
         position: relative
-        margin: auto
-        width: 200px
-        height: 200px
-        background-color: #c2c3c4
+        margin: 20px
+        width: 150px
+        height: 150px
+        // background-color: #c2c3c4
         overflow: hidden
         font-size: 10px
         text-align: center
+
 
         transition: all .25s ease-in-out
         h1
             background-color: rgba(0, 0, 0, 0.3)
             display: block
             position: absolute
-            color: #c2c3c4
+            color: white
             left: 0
             right: 0
             padding-top: 10px
@@ -104,6 +105,11 @@
                 transform: translateY(-50%) scale(1)
             h1
                 color: white
+
+    .carType2
+        border-radius: 20px
+        width: 150px
+        height: 150px
 
 
     .centerImg img
@@ -152,13 +158,30 @@
         justify-content: center
         .thirdPickChoice
             display: inline-block
-            margin: 30px 70px
+            margin: 50px 50px
             position: relative
             background-color: white
             span
                 font-size: 13px
                 display: block
-                width: 300%
                 position: absolute
-                left: -100%
+                width: 100%
                 top: -100%
+        .toTrash
+            border-radius: 5px
+            background-color: green
+            color: white
+            display: flex
+            margin: 0 auto
+            width: 150px
+            height: 50px
+            border: 1px solid #7c7c7c
+            transition: all .2s ease-in-out
+            &:hover
+                background-color: white
+                color: green
+                border-color: green
+                cursor: pointer
+
+            span
+                margin: auto
