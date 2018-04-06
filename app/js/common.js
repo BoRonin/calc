@@ -1,29 +1,37 @@
 document.addEventListener('DOMContentLoaded', function(){
-    clearCart()
+    // clearCart()
     const calc = document.querySelector('.calc')
+    const lineStepOne = document.querySelector('.statusLineStepOne')
+    const lineStepTwo = document.querySelector('.statusLineStepTwo')
+    const lineStepThree = document.querySelector('.statusLineStepThree')
+    const lineStepFour = document.querySelector('.statusLineStepFour')
 
     const calcButton = document.querySelector('.firstPick')
-    calcButton.addEventListener('click', e => activateFirstPick(e))
+    calcButton.addEventListener('click', e => activatePick(e, calcButton2))
 
     const calcButton2 = document.querySelector('.secondPick')
-    calcButton2.addEventListener('click', e => activateSecondPick(e))
+    calcButton2.addEventListener('click', e => activatePick(e, document.querySelector('.thirdPick')))
 
-    const toTrashButton = document.querySelector('.toTrash')
-    toTrashButton.addEventListener('click', () => {
-        allProds[0].name = `Профиль ${profileSelect.value}`
-        allProds[1].name = `Кронштейн ${kronshSelect.value}`
-        allProds[2].name = `Наконечник ${endSelect.value}`
-        allProds[3].name = `Кольца ${ringSelect.value}`
-        const typeCircle = document.querySelector('.statusLineStepThree')
-        typeCircle.classList.remove('statusLineStepNext')
-        typeCircle.classList.add('statusLineStepActive')
-        typeCircle.innerHTML = `&#10004; <span>Готово!</span>`
-        setTimeout(function(){
-            clearCart()
-            prod(allProds)
-        }, 300)
-
+    const toLast = document.querySelector('.toLast')
+    toLast.addEventListener('click', e => {
+        next(e, document.querySelector('.fourthPick'), document.querySelector('.thirdPick'))
     })
+    const toTrashButton = document.querySelector('.toTrash')
+    // toTrashButton.addEventListener('click', () => {
+    //     allProds[0].name = `Профиль ${profileSelect.value}`
+    //     allProds[1].name = `Кронштейн ${kronshSelect.value}`
+    //     allProds[2].name = `Наконечник ${endSelect.value}`
+    //     allProds[3].name = `Кольца ${ringSelect.value}`
+    //     const typeCircle = document.querySelector('.statusLineStepThree')
+    //     typeCircle.classList.remove('statusLineStepNext')
+    //     typeCircle.classList.add('statusLineStepActive')
+    //     typeCircle.innerHTML = `&#10004; <span>Готово!</span>`
+    //     setTimeout(function(){
+    //         clearCart()
+    //         prod(allProds)
+    //     }, 300)
+    //
+    // })
 
     const colorSelect = document.querySelector('.color');
     const lengthSelect = document.querySelector('.length');
@@ -156,8 +164,6 @@ function adjustKrone(kronshSelect, colorSelect, lengthSelect){
     }
     adjustRingQuantity(lengthSelect)
 }
-
-
 function adjustRingQuantity(lengthSelect){
     allProds[3].quantity = lengthSelect.value/10*allProds[0].quantity
     allProds[3].amount = allProds[3].quantity*allProds[3].price
@@ -166,100 +172,70 @@ function adjustQuantity(e, num){
     e.quantity = num
     e.amount = e.quantity*e.price
 }
-function activateFirstPick(e){
-
+function next(e, toAppear, toDissapear){
+    let typeCircle = document.querySelector('.statusLineStepThree')
+    let typeCircle2 = document.querySelector('.statusLineStepFour')
+    typeCircle.classList.remove('statusLineStepNext')
+    typeCircle.classList.add('statusLineStepActive')
+    typeCircle2.classList.add('statusLineStepNext')
+    typeCircle.innerHTML = `&#10004; <span>Профиль и кронштейн</span>`
+    disappearPick(toDissapear)
+    setTimeout(function () {
+        appearPick(toAppear)
+    }, 300);
+    function sayHi(){
+        console.log('HI');
+    }
+}
+function activatePick(e, toAppear){
     const elem = e.target.closest('.carType');
     if (! elem ) return
+    console.log("hey")
+    const elemparent = elem.parentElement;
+    let typeText = elem.children[1].innerHTML;
+    let typeCircle = document.querySelector('.statusLineStepOne')
+    let typeCircle2 = document.querySelector('.statusLineStepTwo')
+    let text = "Тип"
 
-    const elemparent = e.parentElement;
-    const typeText = elem.children[1].innerHTML;
-
-    const hasClass = (elem.classList.contains("activeFirstPick"));
-    if (hasClass) {
-        console.log("has activeFirstPick class");
-    } else {
-        elem.classList.add("activeFirstPick")
-        const typeCircle = document.querySelector('.statusLineStepOne');
-        const typeCircle2 = document.querySelector('.statusLineStepTwo');
-        typeCircle.classList.remove('statusLineStepNext');
-        typeCircle.classList.add('statusLineStepActive');
-        typeCircle2.classList.add('statusLineStepNext');
-        typeCircle.innerHTML = `&#10004; <span>Тип<br> ${typeText}</span>`;
+    elem.classList.add("activePick")
+    if (elemparent.classList.contains('secondPick')) {
+        typeCircle = document.querySelector('.statusLineStepTwo')
+        typeCircle2 = document.querySelector('.statusLineStepThree')
+        text = "Серия"
+    } else if (elemparent.classList.contains('thirdPick')) {
+        typeCircle = document.querySelector('.statusLineStepThree')
+        typeCircle2 = document.querySelector('.statusLineStepFour')
+        text = "Профиль и кронштейн"
+        typeText = ""
     }
-        document.querySelector('.firstPick').style.opacity = "0";
-        setTimeout(function () {
-            document.querySelector('.firstPick').style.display = "none";
-        }, 300)
-        setTimeout(function () {
-            appearSecondPick()
-        }, 300);
-
-}
-function activateSecondPick(e){
-
-    const elem = e.target.closest('.carType2');
-    if (! elem ) return
-
-    const elemparent = e.parentElement;
-    const typeText = elem.children[1].innerHTML;
-
-    const hasClass = (elem.classList.contains("activeSecondPick"));
-    if (hasClass) {
-        console.log("has activeSecondPick class");
-    } else {
-        elem.classList.add("activeSecondPick")
-        const typeCircle = document.querySelector('.statusLineStepTwo');
-        const typeCircle2 = document.querySelector('.statusLineStepThree');
-        typeCircle.classList.remove('statusLineStepNext');
-        typeCircle.classList.add('statusLineStepActive');
-        typeCircle2.classList.add('statusLineStepNext');
-        typeCircle.innerHTML = `&#10004; <span>Серия<br> ${typeText}</span>`;
+    typeCircle.classList.remove('statusLineStepNext')
+    typeCircle.classList.add('statusLineStepActive')
+    typeCircle2.classList.add('statusLineStepNext')
+    typeCircle.innerHTML = `&#10004; <span>${text}<br> ${typeText}</span>`
+    disappearPick(elemparent)
+    setTimeout(function () {
+        appearPick(toAppear)
+    }, 300);
+    function sayHi(){
+        console.log('HI');
     }
-        document.querySelector('.secondPick').style.opacity = "0";
-        setTimeout(function () {
-            document.querySelector('.secondPick').style.display = "none";
-        }, 300)
-        setTimeout(function () {
-            appearThirdPick()
-        }, 300);
 
 }
-function activathirdPick(e){
 
-    const elem = e.target.closest('.carType2');
-    if (! elem ) return
-
-    const elemparent = e.parentElement;
-    const typeText = elem.children[1].innerHTML;
-
-    const hasClass = (elem.classList.contains("activeSecondPick"));
-    if (hasClass) {
-        console.log("has activeSecondPick class");
-    } else {
-        elem.classList.add("activeSecondPick")
-        const typeCircle = document.querySelector('.statusLineStepThree');
-        const typeCircle2 = document.querySelector('.statusLineStepThree');
-        typeCircle.classList.remove('statusLineStepNext');
-        typeCircle.classList.add('statusLineStepActive');
-        typeCircle2.classList.add('statusLineStepNext');
-        typeCircle.innerHTML = `&#10004; <span>Серия<br> ${typeText}</span>`;
+function disappearPick(pick){
+    pick.style.opacity = "0";
+    setTimeout(function () {
+        pick.style.display = "none";
+    }, 300)
+}
+function appearPick(pick){
+    if (pick == document.querySelector('.thirdPick') || pick == document.querySelector('.fourthPick')) {
+        document.querySelector('.display').style.display="block"
+        setTimeout(()=> document.querySelector('.display').style.opacity = "1", 200 )
     }
-        document.querySelector('.secondPick').style.opacity = "0";
-        setTimeout(function () {
-            document.querySelector('.secondPick').style.display = "none";
-        }, 300)
-        setTimeout(function () {
-            appearThirdPick()
-        }, 300);
+    pick.style.display = "block";
+    setTimeout(()=> pick.style.opacity = "1", 200 )
 
-}
-function appearSecondPick() {
-    document.querySelector('.secondPick').style.display = "block";
-    setTimeout(()=> document.querySelector('.secondPick').style.opacity = "1", 200 )
-}
-function appearThirdPick() {
-    document.querySelector('.thirdPick').style.display = "block";
-    setTimeout(()=> document.querySelector('.thirdPick').style.opacity = "1", 200 )
 }
 
 const allProds = [{
