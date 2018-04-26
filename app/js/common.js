@@ -182,10 +182,8 @@ function next(e, toAppear, toDissapear){
     disappearPick(toDissapear)
     setTimeout(function () {
         appearPick(toAppear)
-    }, 300);
-    function sayHi(){
-        console.log('HI');
-    }
+    }, 300)
+
 }
 function activatePick(e, toAppear){
     const elem = e.target.closest('.carType');
