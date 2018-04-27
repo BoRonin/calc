@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const colorSelect = document.querySelector('.colorBox');
     const lengthSelect = document.querySelector('.length');
     const profileSelect = document.querySelector('.profileDivs');
-    const kronshSelect = document.querySelector('.kronsh');
-    const endSelect = document.querySelector('.end');
-    const ringSelect = document.querySelector('.ring');
+    const kronshSelect = document.querySelector('.kronshDivs');
+    const endSelect = document.querySelector('.endDivs');
+    const ringSelect = document.querySelector('.ringDivs');
     lengthSelect.addEventListener('change', () => {
         const temp = [...profileSelect[profileSelect.selectedIndex].value]
         const finalTemp = `${temp[0]}${temp[1]}${temp[2]}${lengthSelect.value}${temp[6]}${temp[7]}${temp[8]}`
@@ -90,6 +90,9 @@ document.addEventListener('DOMContentLoaded', function(){
         let dValue = elem.getAttribute('data-value')
         const lastLetters = [...dValue]
         colorCorrection(profileSelect, lastLetters)
+        colorCorrection(kronshSelect, lastLetters)
+        colorCorrection(endSelect, lastLetters)
+        colorCorrection(ringSelect, lastLetters)
 
         // for(let i = 0; i < profileSelect.length; i++) {
         //     const prof = profileSelect[i];
