@@ -28,34 +28,27 @@
                     <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/7/78/Trollface.svg/1200px-Trollface.svg.png" alt="Деревянный карниз" >
                     <h1>Деревянный карниз</h1>
                 </div>
-                <div class="carType centerImg" value = "2">
-                    <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/7/78/Trollface.svg/1200px-Trollface.svg.png" alt="Другой карниз" >
-                    <h1>Медвед</h1>
-                </div>
-                <div class="carType centerImg" value = "3">
-                    <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/7/78/Trollface.svg/1200px-Trollface.svg.png" alt="Ящичный карниз" >
-                    <h1>Чемодан</h1>
-                </div>
             </div>
             <div class="secondPick">
                 <div class="carType carType2 centerImg" value = "1">
                     <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/7/78/Trollface.svg/1200px-Trollface.svg.png" alt="Деревянный карниз" >
                     <h1>Prestige 35</h1>
                 </div>
-                <div class="carType carType2 centerImg" value = "2">
-                    <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/7/78/Trollface.svg/1200px-Trollface.svg.png" alt="Другой карниз" >
-                    <h1>Говнянушка</h1>
-                </div>
-                <div class="carType carType2 centerImg" value = "3">
-                    <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/7/78/Trollface.svg/1200px-Trollface.svg.png" alt="Ящичный карниз" >
-                    <h1>Наставник дрищ</h1>
-                </div>
             </div>
             <div class="other">
                 <div class="display">
-                    <img class="displayImg" src="//unsplash.it/1000/1000" alt="">
+                    <img class="displayImg" src="//unsplash.it/1000/300" alt="">
                     <span>Выберите цвет</span>
-                    <div class="colorBox yellow"></div>
+                    <div class="colorBox">
+                        <div class="colorDiv activeDiv" data-value="105"></div>
+                        <div class="colorDiv" data-value="200"></div>
+                        <div class="colorDiv" data-value="201"></div>
+                        <div class="colorDiv" data-value="202"></div>
+                        <div class="colorDiv" data-value="203"></div>
+                        <div class="colorDiv" data-value="204"></div>
+                        <div class="colorDiv" data-value="205"></div>
+                    </div>
+
                     <select class="color">
                       <option value="105">105</option>
                       <option value="200">200</option>
@@ -68,24 +61,6 @@
                 </div>
                 <div class="thirdPick">
                     <div class="thirdPickRow secondPickFirstRow">
-
-                        <div class="thirdPickChoice profileChoice">
-                            <span>Выберите профиль</span>
-                            <select class="profile">
-                              <option value="440200105">440200105</option>
-                              <option value="445150105">445150105</option>
-                            </select>
-                        </div>
-                        <div class="thirdPickChoice kronshChoice">
-                            <span>Выберите кронштейн</span>
-                            <select class="kronsh">
-                              <option value="435110105">435110105</option>
-                              <option value="435118105">435118105</option>
-                              <option value="435119105">435119105</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="thirdPickRow thirdPickSecondRow">
                         <div class="thirdPickChoice lengthChoice">
                             <span>Выберите длину</span>
                             <select class="length">
@@ -94,6 +69,33 @@
                               <option value="300">300</option>
                             </select>
                         </div>
+                        <div class="thirdPickChoice profileChoice">
+                            <span>Выберите профиль</span>
+                            <div class="thirdDivs profileDivs">
+                                <div class="thirdDiv profileDiv activeDiv" data-value="440200105"></div>
+                                <div class="thirdDiv profileDiv" data-value="445150105"></div>
+                            </div>
+                            <select class="profile">
+                              <option value="440200105">440200105</option>
+                              <option value="445150105">445150105</option>
+                            </select>
+                        </div>
+                        <div class="thirdPickChoice kronshChoice">
+                            <span>Выберите кронштейн</span>
+                            <div class="thirdDivs kronshDivs">
+                                <div class="thirdDiv kronshDiv activeDiv" data-value="435110105"></div>
+                                <div class="thirdDiv kronshDiv" data-value="435118105"></div>
+                                <div class="thirdDiv kronshDiv" data-value="435119105"></div>
+                            </div>
+                            <select class="kronsh">
+                              <option value="435110105">435110105</option>
+                              <option value="435118105">435118105</option>
+                              <option value="435119105">435119105</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="thirdPickRow thirdPickSecondRow">
+
 
                         <div class="toLast calcBut"><span>Далее</span></div>
 
@@ -105,6 +107,17 @@
 
                         <div class="thirdPickChoice endChoice">
                             <span>Выберите наконечники</span>
+                            <div class="fourthDivs">
+                                <div class="fourthDiv endDiv activeDiv" data-value="435601105"></div>
+                                <div class="fourthDiv endDiv" data-value="435602105"></div>
+                                <div class="fourthDiv endDiv" data-value="435603105"></div>
+                                <div class="fourthDiv endDiv" data-value="435604105"></div>
+                                <div class="fourthDiv endDiv" data-value="435606105"></div>
+                                <div class="fourthDiv endDiv" data-value="435607105"></div>
+                                <div class="fourthDiv endDiv" data-value="435608105"></div>
+                                <div class="fourthDiv endDiv" data-value="435609105"></div>
+                                <div class="fourthDiv endDiv" data-value="435610105"></div>
+                            </div>
                             <select class="end">
                               <option value="435601105">435601105</option>
                               <option value="435602105">435602105</option>
@@ -119,6 +132,9 @@
                         </div>
                         <div class="thirdPickChoice ringChoice">
                             <span>Выберите кольца</span>
+                            <div class="fourthDivs">
+                                <div class="fourthDiv ringDiv activeDiv" data-value="435035105"></div>
+                            </div>
                             <select class="ring">
                               <option value="435035105">435035105</option>
                             </select>

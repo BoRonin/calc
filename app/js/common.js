@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function(){
     //
     // })
 
-    const colorSelect = document.querySelector('.color');
+    const colorSelect = document.querySelector('.colorBox');
     const lengthSelect = document.querySelector('.length');
-    const profileSelect = document.querySelector('.profile');
+    const profileSelect = document.querySelector('.profileDivs');
     const kronshSelect = document.querySelector('.kronsh');
     const endSelect = document.querySelector('.end');
     const ringSelect = document.querySelector('.ring');
@@ -82,65 +82,98 @@ document.addEventListener('DOMContentLoaded', function(){
         allProds[0].ts = Number(profileSelect.value)
         adjustRingQuantity(lengthSelect)
     })
-    colorSelect.addEventListener('change', () => {
-        const lastLetters = [...colorSelect.value]
+    colorSelect.addEventListener('click', (e) => {
+        const elem = e.target.closest('.colorDiv')
+        if (! elem ) return
+        activateNode(colorSelect, elem)
 
-        for(let i = 0; i < profileSelect.length; i++) {
-            const prof = profileSelect[i];
-            const text = [...prof.value];
-            text[6] = lastLetters[0];
-            text[7] = lastLetters[1];
-            text[8] = lastLetters[2];
-            const finalText = text.join('');
-            profileSelect[i].value = finalText
-            profileSelect[i].innerHTML = finalText
-        }
-        for (let i = 0; i < kronshSelect.length; i++) {
-            const kron = kronshSelect[i];
-            const text = [...kron.value];
-            text[6] = lastLetters[0];
-            text[7] = lastLetters[1];
-            text[8] = lastLetters[2];
-            const finalText = text.join('');
-            kronshSelect[i].value = finalText;
-            kronshSelect[i].innerHTML = finalText;
-        }
-        for (let i = 0; i < endSelect.length; i++) {
-            const end = endSelect[i];
-            const text = [...end.value];
-            text[6] = lastLetters[0];
-            text[7] = lastLetters[1];
-            text[8] = lastLetters[2];
-            const finalText = text.join('');
-            endSelect[i].value = finalText;
-            endSelect[i].innerHTML = finalText;
-        }
-        for (let i = 0; i < ringSelect.length; i++) {
-            const ring = ringSelect[i];
-            const text = [...ring.value];
-            text[6] = lastLetters[0];
-            text[7] = lastLetters[1];
-            text[8] = lastLetters[2];
-            const finalText = text.join('');
-            ringSelect[i].value = finalText;
-            ringSelect[i].innerHTML = finalText;
-        }
+        let dValue = elem.getAttribute('data-value')
+        const lastLetters = [...dValue]
+        colorCorrection(profileSelect, lastLetters)
 
-        allProds[0].ts = Number(profileSelect.value)
-        allProds[1].ts = Number(kronshSelect.value)
-        allProds[2].ts = Number(endSelect.value)
-        allProds[3].ts = Number(ringSelect.value)
-        if (allProds[4]) {
-            allProds[4].ts = Number(`435605${colorSelect.value}`)
-
-        }
+        // for(let i = 0; i < profileSelect.length; i++) {
+        //     const prof = profileSelect[i];
+        //     const text = [...prof.value];
+        //     text[6] = lastLetters[0];
+        //     text[7] = lastLetters[1];
+        //     text[8] = lastLetters[2];
+        //     const finalText = text.join('');
+        //     profileSelect[i].value = finalText
+        //     profileSelect[i].innerHTML = finalText
+        // }
+        // for (let i = 0; i < kronshSelect.length; i++) {
+        //     const kron = kronshSelect[i];
+        //     const text = [...kron.value];
+        //     text[6] = lastLetters[0];
+        //     text[7] = lastLetters[1];
+        //     text[8] = lastLetters[2];
+        //     const finalText = text.join('');
+        //     kronshSelect[i].value = finalText;
+        //     kronshSelect[i].innerHTML = finalText;
+        // }
+        // for (let i = 0; i < endSelect.length; i++) {
+        //     const end = endSelect[i];
+        //     const text = [...end.value];
+        //     text[6] = lastLetters[0];
+        //     text[7] = lastLetters[1];
+        //     text[8] = lastLetters[2];
+        //     const finalText = text.join('');
+        //     endSelect[i].value = finalText;
+        //     endSelect[i].innerHTML = finalText;
+        // }
+        // for (let i = 0; i < ringSelect.length; i++) {
+        //     const ring = ringSelect[i];
+        //     const text = [...ring.value];
+        //     text[6] = lastLetters[0];
+        //     text[7] = lastLetters[1];
+        //     text[8] = lastLetters[2];
+        //     const finalText = text.join('');
+        //     ringSelect[i].value = finalText;
+        //     ringSelect[i].innerHTML = finalText;
+        // }
+        //
+        // allProds[0].ts = Number(profileSelect.value)
+        // allProds[1].ts = Number(kronshSelect.value)
+        // allProds[2].ts = Number(endSelect.value)
+        // allProds[3].ts = Number(ringSelect.value)
+        // if (allProds[4]) {
+        //     allProds[4].ts = Number(`435605${colorSelect.value}`)
+        //
+        // }
 
     })
     kronshSelect.addEventListener('change', () => {
         adjustKrone(kronshSelect, colorSelect, lengthSelect)
     })
 })
+function colorCorrection(paps, lastLetters){
+    let childDivs = paps.getElementsByTagName('div')
+    let text = null
+    for (let child in childDivs) {
+        if (typeof childDivs[child] === "object"){
+            text = [...childDivs[child].getAttribute('data-value')]
+                text[6] = lastLetters[0]
+                text[7] = lastLetters[1]
+                text[8] = lastLetters[2]
+            childDivs[child].setAttribute('data-value', text.join(''))
+            console.log(childDivs[child].getAttribute('data-value'))
+        }
 
+    }
+}
+function activateNode(paps, elem){
+    let childDivs = paps.getElementsByTagName('div')
+    for (let child in childDivs) {
+        if (typeof childDivs[child] === "object"){
+            if (childDivs[child].classList.contains('activeDiv')) {
+                childDivs[child].classList.remove('activeDiv')
+            }
+        }
+
+    }
+
+    elem.classList.add('activeDiv')
+}
 function adjustKrone(kronshSelect, colorSelect, lengthSelect){
     allProds[1].ts = Number(kronshSelect.value)
     const kronshValue = [...kronshSelect.value]
@@ -184,6 +217,10 @@ function next(e, toAppear, toDissapear){
         appearPick(toAppear)
     }, 300)
 
+}
+function activePick2(e, toAppear){
+    const elem = e.target.closest('.thirdDiv');
+    if (! elem ) return
 }
 function activatePick(e, toAppear){
     const elem = e.target.closest('.carType');
@@ -231,7 +268,7 @@ function appearPick(pick){
         document.querySelector('.display').style.display="block"
         setTimeout(()=> document.querySelector('.display').style.opacity = "1", 200 )
     }
-    pick.style.display = "block";
+    pick.style.display = "flex";
     setTimeout(()=> pick.style.opacity = "1", 200 )
 
 }

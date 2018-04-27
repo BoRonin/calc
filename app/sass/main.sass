@@ -68,6 +68,8 @@
     padding: 0
     display: flex
     flex-direction: column
+    span
+        font-size: 1.2rem
 
     .carType
         display: inline-block
@@ -124,7 +126,7 @@
         transition: all 0.3s ease-in-out
         .activePick
             background-color: #a3a3a3
-            transform: scale(1.3)
+            transform: scale(1.2)
     .secondPick
         display: none
         opacity: 0
@@ -133,10 +135,31 @@
 
     .display
         display: none
-        margin: 0px auto 100px
+        margin: 0px auto
         width: 100%
-        height: 300px
+        height: auto
         transition: all 0.3s ease-in-out
+        .colorBox
+            height: auto
+            width: 100%
+            display: flex
+            flex-direction: row
+            justify-content: center
+            .colorDiv
+                display: block
+                height: 30px
+                width: 30px
+                background-color: grey
+                border-radius: 7px
+                border: 1px solid black
+                margin: 20px
+                transition: all 0.15s ease-in-out
+                &:hover
+                    cursor: pointer
+                    box-shadow: 0px 0px 4px 1px grey
+            .activeDiv
+                border: 1px solid green
+                box-shadow: 0px 0px 2px 2px green
         select
             appearance: none
             border: 2px solid rgba(#7c7c7c, 0.2)
@@ -147,7 +170,7 @@
             margin: 20px auto
         &Img
             display: block
-            margin: 0 auto
+            margin: 20px auto
             width: 700px
             height: 100%
             object-fit: cover
@@ -157,6 +180,41 @@
 
     .thirdPick, .fourthPick
         transition: all 0.3s ease-in-out
+        display: flex
+        flex-direction: row
+
+        .thirdDivs, .fourthDivs
+            display: flex
+            flex-direction: row
+            width: 100%
+            justify-content: space-evenly
+            margin: 50px auto
+            flex-flow: row wrap
+            .fourthDiv
+                height: 120px
+                width: 120px
+                background-color: grey
+                border-radius: 10px
+                border: 1px solid black
+                transition: all 0.15s ease-in-out
+                &:hover
+                    cursor: pointer
+                    box-shadow: 0px 0px 4px 1px grey
+            .endDiv
+                margin: 20px 20px
+            .thirdDiv
+                height: 200px
+                width: 200px
+                background-color: grey
+                border-radius: 10px
+                border: 1px solid black
+                transition: all 0.15s ease-in-out
+                &:hover
+                    cursor: pointer
+                    box-shadow: 0px 0px 4px 1px grey
+            .activeDiv
+                border: 2px solid green
+                box-shadow: 0px 0px 2px 2px green
         select
             appearance: none
             border: 2px solid rgba(#7c7c7c, 0.2)
@@ -166,6 +224,9 @@
             width: 200px
         .thirdPickRow
             width: 100%
+            display: flex
+            flex-flow: column
+
         margin: 30px auto
         display: none
         opacity: 0
@@ -179,11 +240,11 @@
             position: relative
             background-color: white
             span
-                font-size: 13px
+                // font-size: 13px
                 display: block
                 position: absolute
                 width: 100%
-                top: -100%
+                top: -31px
         .calcBut
             border-radius: 5px
             background-color: green
