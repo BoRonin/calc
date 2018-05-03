@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const ringSelect = document.querySelector('.ringDivs')
 
     //activeDivs
+    let colorActiveDiv = colorSelect.getElementsByTagName('div')[0]
     let profileActiveDiv = profileSelect.getElementsByTagName('div')[0]
     let kronshActiveDiv = kronshSelect.getElementsByTagName('div')[0]
     let endActiveDiv = endSelect.getElementsByTagName('div')[0]
@@ -130,7 +131,9 @@ document.addEventListener('DOMContentLoaded', function(){
     })
     colorSelect.addEventListener('click', (e) => {
         const elem = e.target.closest('.colorDiv')
-        if (! elem ) return
+        if (!elem) return
+        if (elem.classList.contains('activeDiv')) return
+        colorActiveDiv = elem
         activateNode(colorSelect, elem)
 
         let dValue = elem.getAttribute('data-value')
@@ -144,13 +147,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
         if (allProds[4]) {
-            allProds[4].ts = `435605${elem.getAttribute('data-value')}`
-
+            allProds[4].ts = Number(`435605${elem.getAttribute('data-value')}`)
         }
 
     })
-    kronshSelect.addEventListener('click', () => {
-        adjustKrone(kronshSelect, colorSelect, lengthSelect)
+    kronshSelect.addEventListener('click', (e) => {
+        const elem = e.target.closest('.kronshDiv')
+        if (!elem) return
+        if (elem.classList.contains('activeDiv')) return
+        kronshActiveDiv = elem
+        console.log(kronshActiveDiv)
+        activateNode(kronshSelect, elem)
+        adjustKrone(elem, colorActiveDiv, lengthSelect)
     })
 })
 function colorCorrection(paps, lastLetters, index){
@@ -181,20 +189,21 @@ function activateNode(paps, elem){
     elem.classList.add('activeDiv')
 }
 
-function adjustKrone(kronshSelect, colorSelect, lengthSelect){
-    allProds[1].ts = Number(kronshSelect.value)
-    const kronshValue = [...kronshSelect.value]
+function adjustKrone(elem, colorActiveDiv, lengthSelect){
+    allProds[1].ts = Number(elem.getAttribute('data-value'))
+    const kronshValue = [...elem.getAttribute('data-value')]
     const kronshType = Number(`${kronshValue[3]}${kronshValue[4]}${kronshValue[5]}`)
     if (kronshType === 119 && !allProds[4]) {
         allProds[0].quantity = 2
         allProds[0].amount = allProds[0].price*allProds[0].quantity
+        const TS = `435605${colorActiveDiv.getAttribute('data-value')}`
         allProds.push({
                 amount : 2,
                 img:"https://pp.userapi.com/c9266/v9266282/2fa/oy2a54KWUoQ.jpg",
                 name:"Наконечник 605",
                 price:1,
                 quantity:2,
-                ts:Number(`435605${colorSelect.value}`),
+                ts:Number(TS)
             })
 
     } else if (allProds[4]) {
