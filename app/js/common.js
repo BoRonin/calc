@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
         profileActiveDiv.setAttribute('data-value', finalTemp)
         console.log(profileActiveDiv.getAttribute('data-value'))
 
-        allProds[0].ts = profileActiveDiv.getAttribute('data-value')
+        allProds[0].ts = Number(profileActiveDiv.getAttribute('data-value'))
         if (lengthSelect.value == 240 || lengthSelect.value == 300) {
             allProds[1].quantity = 3
             allProds[1].amount = allProds[1].quantity*allProds[1].price
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function(){
         let dValue = elem.getAttribute('data-value')
         activateNode(profileSelect, elem)
         profileActiveDiv = elem
-        console.log(profileActiveDiv);
 
         if (dValue.startsWith('440')) {
             if (lengthSelect[0].value = 150) {
@@ -83,7 +82,22 @@ document.addEventListener('DOMContentLoaded', function(){
                 lengthSelect[1].innerHTML = "240 см."
                 lengthSelect[2].value = 300
                 lengthSelect[2].innerHTML = "300 см."
-                allProds[0].ts = profileActiveDiv.getAttribute('data-value')
+
+                let childDivs = profileSelect.getElementsByTagName('div')
+                let text = null
+                for (let child in childDivs){
+                    if (typeof childDivs[child] === "object") {
+                        text = [...childDivs[child].getAttribute('data-value')]
+                        text[3] = "2"
+                        text[4] = "0"
+                        text[5] = "0"
+                        childDivs[child].setAttribute('data-value', text.join(''))
+                        if (childDivs[child].classList.contains('activeDiv')) {
+                            profileActiveDiv = childDivs[child]
+                        }
+                    }
+                }
+
             }
 
         } else {
@@ -92,14 +106,27 @@ document.addEventListener('DOMContentLoaded', function(){
                 lengthSelect[0].value = 150
                 lengthSelect[0].innerHTML = "150 см."
                 lengthSelect[1].value = 200
-                lengthSelect[1].innerHTML = "250 см."
+                lengthSelect[1].innerHTML = "200 см."
                 lengthSelect[2].value = 240
                 lengthSelect[2].innerHTML = "240 см."
+                let childDivs = profileSelect.getElementsByTagName('div')
+                let text = null
+                for (let child in childDivs){
+                    if (typeof childDivs[child] === "object") {
+                        text = [...childDivs[child].getAttribute('data-value')]
+                        text[3] = "1"
+                        text[4] = "5"
+                        text[5] = "0"
+                        childDivs[child].setAttribute('data-value', text.join(''))
+                        if (childDivs[child].classList.contains('activeDiv')) {
+                            profileActiveDiv = childDivs[child]
+                        }
+                    }
+                }
             }
         }
-        allProds[0].ts = dValue
+        allProds[0].ts = Number(profileActiveDiv.getAttribute('data-value'))
         adjustRingQuantity(lengthSelect)
-        console.log(profileActiveDiv)
     })
     colorSelect.addEventListener('click', (e) => {
         const elem = e.target.closest('.colorDiv')
@@ -122,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
     })
-    kronshSelect.addEventListener('change', () => {
+    kronshSelect.addEventListener('click', () => {
         adjustKrone(kronshSelect, colorSelect, lengthSelect)
     })
 })
@@ -136,9 +163,8 @@ function colorCorrection(paps, lastLetters, index){
                 text[7] = lastLetters[1]
                 text[8] = lastLetters[2]
             childDivs[child].setAttribute('data-value', text.join(''))
-            // console.log(childDivs[child].getAttribute('data-value'))
             if (childDivs[child].classList.contains('activeDiv')) {
-                allProds[index].ts = childDivs[child].getAttribute('data-value')
+                allProds[index].ts = Number(childDivs[child].getAttribute('data-value'))
             }
         }
     }
@@ -151,9 +177,7 @@ function activateNode(paps, elem){
                 childDivs[child].classList.remove('activeDiv')
             }
         }
-
     }
-
     elem.classList.add('activeDiv')
 }
 
