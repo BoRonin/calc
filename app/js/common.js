@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const lineStepThree = document.querySelector('.statusLineStepThree')
     const lineStepFour = document.querySelector('.statusLineStepFour')
 
+
+
     const calcButton = document.querySelector('.firstPick')
     calcButton.addEventListener('click', e => activatePick(e, calcButton2))
 
@@ -33,18 +35,26 @@ document.addEventListener('DOMContentLoaded', function(){
     //
     // })
 
-    const colorSelect = document.querySelector('.colorBox');
-    const lengthSelect = document.querySelector('.length');
-    const profileSelect = document.querySelector('.profileDivs');
-    const kronshSelect = document.querySelector('.kronshDivs');
-    const endSelect = document.querySelector('.endDivs');
-    const ringSelect = document.querySelector('.ringDivs');
+    const colorSelect = document.querySelector('.colorBox')
+    const lengthSelect = document.querySelector('.length')
+    const profileSelect = document.querySelector('.profileDivs')
+    const kronshSelect = document.querySelector('.kronshDivs')
+    const endSelect = document.querySelector('.endDivs')
+    const ringSelect = document.querySelector('.ringDivs')
+
+    //activeDivs
+    let profileActiveDiv = profileSelect.getElementsByTagName('div')[0]
+    let kronshActiveDiv = kronshSelect.getElementsByTagName('div')[0]
+    let endActiveDiv = endSelect.getElementsByTagName('div')[0]
+    let ringActiveDiv = ringSelect.getElementsByTagName('div')[0]
+
     lengthSelect.addEventListener('change', () => {
-        const temp = [...profileSelect[profileSelect.selectedIndex].value]
+        const temp = [...profileActiveDiv.getAttribute('data-value')]
         const finalTemp = `${temp[0]}${temp[1]}${temp[2]}${lengthSelect.value}${temp[6]}${temp[7]}${temp[8]}`
-        profileSelect[profileSelect.selectedIndex].value = finalTemp
-        profileSelect[profileSelect.selectedIndex].innerHTML = finalTemp
-        allProds[0].ts = Number(profileSelect.value)
+        profileActiveDiv.setAttribute('data-value', finalTemp)
+        console.log(profileActiveDiv.getAttribute('data-value'))
+
+        allProds[0].ts = profileActiveDiv.getAttribute('data-value')
         if (lengthSelect.value == 240 || lengthSelect.value == 300) {
             allProds[1].quantity = 3
             allProds[1].amount = allProds[1].quantity*allProds[1].price
@@ -55,32 +65,41 @@ document.addEventListener('DOMContentLoaded', function(){
         adjustRingQuantity(lengthSelect)
 
     })
-    profileSelect.addEventListener('change', () => {
-        if (profileSelect.value.startsWith('440')) {
+    profileSelect.addEventListener('click', (e) => {
+        const elem = e.target.closest('.profileDiv')
+        if (!elem) return
+        if (elem.classList.contains('activeDiv')) return
+        let dValue = elem.getAttribute('data-value')
+        activateNode(profileSelect, elem)
+        profileActiveDiv = elem
+        console.log(profileActiveDiv);
+
+        if (dValue.startsWith('440')) {
             if (lengthSelect[0].value = 150) {
                 lengthSelect.selectedIndex = 0
                 lengthSelect[0].value = 200
-                lengthSelect[0].innerHTML = 200
+                lengthSelect[0].innerHTML = "200 см."
                 lengthSelect[1].value = 240
-                lengthSelect[1].innerHTML = 240
+                lengthSelect[1].innerHTML = "240 см."
                 lengthSelect[2].value = 300
-                lengthSelect[2].innerHTML = 300
-                allProds[0].ts = profileSelect.value
+                lengthSelect[2].innerHTML = "300 см."
+                allProds[0].ts = profileActiveDiv.getAttribute('data-value')
             }
 
         } else {
             if (lengthSelect[0].value = 200) {
                 lengthSelect.selectedIndex = 0
                 lengthSelect[0].value = 150
-                lengthSelect[0].innerHTML = 150
+                lengthSelect[0].innerHTML = "150 см."
                 lengthSelect[1].value = 200
-                lengthSelect[1].innerHTML = 200
+                lengthSelect[1].innerHTML = "250 см."
                 lengthSelect[2].value = 240
-                lengthSelect[2].innerHTML = 240
+                lengthSelect[2].innerHTML = "240 см."
             }
         }
-        allProds[0].ts = Number(profileSelect.value)
+        allProds[0].ts = dValue
         adjustRingQuantity(lengthSelect)
+        console.log(profileActiveDiv)
     })
     colorSelect.addEventListener('click', (e) => {
         const elem = e.target.closest('.colorDiv')
@@ -89,67 +108,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
         let dValue = elem.getAttribute('data-value')
         const lastLetters = [...dValue]
-        colorCorrection(profileSelect, lastLetters)
-        colorCorrection(kronshSelect, lastLetters)
-        colorCorrection(endSelect, lastLetters)
-        colorCorrection(ringSelect, lastLetters)
+        colorCorrection(profileSelect, lastLetters, 0)
+        colorCorrection(kronshSelect, lastLetters, 1)
+        colorCorrection(endSelect, lastLetters, 2)
+        colorCorrection(ringSelect, lastLetters, 3)
 
-        // for(let i = 0; i < profileSelect.length; i++) {
-        //     const prof = profileSelect[i];
-        //     const text = [...prof.value];
-        //     text[6] = lastLetters[0];
-        //     text[7] = lastLetters[1];
-        //     text[8] = lastLetters[2];
-        //     const finalText = text.join('');
-        //     profileSelect[i].value = finalText
-        //     profileSelect[i].innerHTML = finalText
-        // }
-        // for (let i = 0; i < kronshSelect.length; i++) {
-        //     const kron = kronshSelect[i];
-        //     const text = [...kron.value];
-        //     text[6] = lastLetters[0];
-        //     text[7] = lastLetters[1];
-        //     text[8] = lastLetters[2];
-        //     const finalText = text.join('');
-        //     kronshSelect[i].value = finalText;
-        //     kronshSelect[i].innerHTML = finalText;
-        // }
-        // for (let i = 0; i < endSelect.length; i++) {
-        //     const end = endSelect[i];
-        //     const text = [...end.value];
-        //     text[6] = lastLetters[0];
-        //     text[7] = lastLetters[1];
-        //     text[8] = lastLetters[2];
-        //     const finalText = text.join('');
-        //     endSelect[i].value = finalText;
-        //     endSelect[i].innerHTML = finalText;
-        // }
-        // for (let i = 0; i < ringSelect.length; i++) {
-        //     const ring = ringSelect[i];
-        //     const text = [...ring.value];
-        //     text[6] = lastLetters[0];
-        //     text[7] = lastLetters[1];
-        //     text[8] = lastLetters[2];
-        //     const finalText = text.join('');
-        //     ringSelect[i].value = finalText;
-        //     ringSelect[i].innerHTML = finalText;
-        // }
-        //
-        // allProds[0].ts = Number(profileSelect.value)
-        // allProds[1].ts = Number(kronshSelect.value)
-        // allProds[2].ts = Number(endSelect.value)
-        // allProds[3].ts = Number(ringSelect.value)
-        // if (allProds[4]) {
-        //     allProds[4].ts = Number(`435605${colorSelect.value}`)
-        //
-        // }
+
+
+
+        if (allProds[4]) {
+            allProds[4].ts = `435605${elem.getAttribute('data-value')}`
+
+        }
 
     })
     kronshSelect.addEventListener('change', () => {
         adjustKrone(kronshSelect, colorSelect, lengthSelect)
     })
 })
-function colorCorrection(paps, lastLetters){
+function colorCorrection(paps, lastLetters, index){
     let childDivs = paps.getElementsByTagName('div')
     let text = null
     for (let child in childDivs) {
@@ -159,9 +136,11 @@ function colorCorrection(paps, lastLetters){
                 text[7] = lastLetters[1]
                 text[8] = lastLetters[2]
             childDivs[child].setAttribute('data-value', text.join(''))
-            console.log(childDivs[child].getAttribute('data-value'))
+            // console.log(childDivs[child].getAttribute('data-value'))
+            if (childDivs[child].classList.contains('activeDiv')) {
+                allProds[index].ts = childDivs[child].getAttribute('data-value')
+            }
         }
-
     }
 }
 function activateNode(paps, elem){
@@ -177,6 +156,7 @@ function activateNode(paps, elem){
 
     elem.classList.add('activeDiv')
 }
+
 function adjustKrone(kronshSelect, colorSelect, lengthSelect){
     allProds[1].ts = Number(kronshSelect.value)
     const kronshValue = [...kronshSelect.value]
