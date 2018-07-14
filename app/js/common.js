@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    // clearCart()
+    clearCart()
     const calc = document.querySelector('.calc')
     const lineStepOne = document.querySelector('.statusLineStepOne')
     const lineStepTwo = document.querySelector('.statusLineStepTwo')
@@ -19,21 +19,21 @@ document.addEventListener('DOMContentLoaded', function(){
         next(e, document.querySelector('.fourthPick'), document.querySelector('.thirdPick'))
     })
     const toTrashButton = document.querySelector('.toTrash')
-    // toTrashButton.addEventListener('click', () => {
-    //     allProds[0].name = `Профиль ${profileSelect.value}`
-    //     allProds[1].name = `Кронштейн ${kronshSelect.value}`
-    //     allProds[2].name = `Наконечник ${endSelect.value}`
-    //     allProds[3].name = `Кольца ${ringSelect.value}`
-    //     const typeCircle = document.querySelector('.statusLineStepThree')
-    //     typeCircle.classList.remove('statusLineStepNext')
-    //     typeCircle.classList.add('statusLineStepActive')
-    //     typeCircle.innerHTML = `&#10004; <span>Готово!</span>`
-    //     setTimeout(function(){
-    //         clearCart()
-    //         prod(allProds)
-    //     }, 300)
-    //
-    // })
+    toTrashButton.addEventListener('click', () => {
+        allProds[0].name = `Профиль ${profileActiveDiv.getAttribute('data-value')}`
+        allProds[1].name = `Кронштейн ${kronshActiveDiv.getAttribute('data-value')}`
+        allProds[2].name = `Наконечник ${endActiveDiv.getAttribute('data-value')}`
+        allProds[3].name = `Кольца ${ringActiveDiv.getAttribute('data-value')}`
+        const typeCircle = document.querySelector('.statusLineStepFour')
+        typeCircle.classList.remove('statusLineStepNext')
+        typeCircle.classList.add('statusLineStepActive')
+        typeCircle.innerHTML = `&#10004; <span>Готово!</span>`
+        setTimeout(function(){
+            clearCart()
+            prod(allProds)
+        }, 300)
+
+    })
 
     const colorSelect = document.querySelector('.colorBox')
     const lengthSelect = document.querySelector('.length')
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function(){
         adjustRingQuantity(lengthSelect)
 
     })
-    profileSelect.addEventListener('click', (e) => {
+    profileSelect.addEventListener('click', e => {
         const elem = e.target.closest('.profileDiv')
         if (!elem) return
         if (elem.classList.contains('activeDiv')) return
@@ -127,9 +127,10 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         }
         allProds[0].ts = Number(profileActiveDiv.getAttribute('data-value'))
+        allProds[0].img = elem.children[0].getAttribute('src')
         adjustRingQuantity(lengthSelect)
     })
-    colorSelect.addEventListener('click', (e) => {
+    colorSelect.addEventListener('click', e => {
         const elem = e.target.closest('.colorDiv')
         if (!elem) return
         if (elem.classList.contains('activeDiv')) return
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
     })
-    kronshSelect.addEventListener('click', (e) => {
+    kronshSelect.addEventListener('click', e => {
         const elem = e.target.closest('.kronshDiv')
         if (!elem) return
         if (elem.classList.contains('activeDiv')) return
@@ -159,6 +160,24 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log(kronshActiveDiv)
         activateNode(kronshSelect, elem)
         adjustKrone(elem, colorActiveDiv, lengthSelect)
+    })
+    endSelect.addEventListener('click', e => {
+        const elem = e.target.closest('.endDiv')
+        if (!elem) return
+        if (elem.classList.contains('activeDiv')) return
+        activateNode(endSelect, elem)
+        endActiveDiv = elem
+        allProds[2].ts = Number(elem.getAttribute('data-value'))
+        allProds[2].img = elem.children[0].getAttribute('src')
+    })
+    ringSelect.addEventListener('click', e => {
+        const elem = e.target.closest('.ringDiv')
+        if (!elem) return
+        if (elem.classList.contains('activeDiv')) return
+        activateNode(ringSelect, elem)
+        ringActiveDiv = elem
+        allProds[3].ts = Number(elem.getAttribute('data-value'))
+        allProds[3].img = elem.children[0].getAttribute('src')
     })
 })
 function colorCorrection(paps, lastLetters, index){
@@ -191,6 +210,7 @@ function activateNode(paps, elem){
 
 function adjustKrone(elem, colorActiveDiv, lengthSelect){
     allProds[1].ts = Number(elem.getAttribute('data-value'))
+    allProds[1].img = elem.children[0].getAttribute('src')
     const kronshValue = [...elem.getAttribute('data-value')]
     const kronshType = Number(`${kronshValue[3]}${kronshValue[4]}${kronshValue[5]}`)
     if (kronshType === 119 && !allProds[4]) {
@@ -199,7 +219,7 @@ function adjustKrone(elem, colorActiveDiv, lengthSelect){
         const TS = `435605${colorActiveDiv.getAttribute('data-value')}`
         allProds.push({
                 amount : 2,
-                img:"https://pp.userapi.com/c9266/v9266282/2fa/oy2a54KWUoQ.jpg",
+                img:"https://static.tildacdn.com/tild3965-6432-4863-b734-613531306333/435-605.jpg",
                 name:"Наконечник 605",
                 price:1,
                 quantity:2,
@@ -291,28 +311,28 @@ function appearPick(pick){
 
 const allProds = [{
         amount : 1,
-        img:"https://pp.userapi.com/c9266/v9266282/2fa/oy2a54KWUoQ.jpg",
+        img:"https://static.tildacdn.com/tild3166-3038-4363-b137-316663393566/440-200.jpg",
         name:"Профиль",
         price:1,
         quantity:1,
         ts:440200105,
     }, {
         amount : 2,
-        img:"https://pp.userapi.com/c830209/v830209609/2d598/XovK7FVpYCM.jpg",
+        img:"https://static.tildacdn.com/tild3736-3861-4263-a661-616236333766/435-110.jpg",
         name:"Кронштейн",
         price:1,
         quantity:2,
         ts:435110105,
     }, {
         amount : 1,
-        img:"https://pp.userapi.com/c310830/v310830469/59d5/gF-598GyC5g.jpg",
+        img:"https://static.tildacdn.com/tild3032-6262-4064-a237-396265373763/435-601.jpg",
         name:"Наконечник",
         price:1,
         quantity:1,
         ts:435601105,
     }, {
         amount : 20,
-        img:"https://pp.userapi.com/c623321/v623321725/8805/3Zo4UJu8-Mw.jpg",
+        img:"https://static.tildacdn.com/tild6663-6462-4662-a430-316563616430/435-035.jpg",
         name:"Кольца",
         price:1,
         quantity:20,

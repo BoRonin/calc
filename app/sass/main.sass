@@ -1,17 +1,17 @@
 
 
 .rightFont
-    font-family: 'Open Sans', sans-serif
+    font-family: 'Roboto', sans-serif
     font-weight: 300
 .calc
     margin: auto
     padding: 0
     display: flex
     flex-direction: column
-    // background-color: #e0e0e0
     width: 1200px
-    height: 700px
+    height: 1500px
     text-align: center
+
 
 .statusLine
     display: flex
@@ -71,6 +71,7 @@
     span
         font-size: 1.2rem
 
+
     .carType
         display: inline-block
         border: 2px solid #444
@@ -121,7 +122,7 @@
         transition: all .25s ease-in-out
 
     .firstPick, .secondPick
-        margin: auto
+        margin: 0 auto
         padding: 0
         transition: all 0.3s ease-in-out
         .activePick
@@ -137,8 +138,11 @@
         display: none
         margin: 0px auto
         width: 100%
-        height: auto
+        height: 300px
         transition: all 0.3s ease-in-out
+        .displayImg
+            height: 200px
+            object-fit: contain
         .colorBox
             height: auto
             width: 100%
@@ -181,37 +185,52 @@
         transition: all 0.3s ease-in-out
         display: flex
         flex-direction: row
+        .lengthChoice
+            padding-top: 2em
+
+
+        img
+            width: 100%
+            transition: all .25s ease-in-out
+            border-radius: 8px
+            &:hover
+                transform: scale(1.03)
 
         .thirdDivs, .fourthDivs
             display: flex
             flex-direction: row
             width: 100%
             justify-content: space-evenly
-            margin: 50px auto
+            margin: 20px auto
             flex-flow: row wrap
+
             .fourthDiv
                 height: 120px
                 width: 120px
                 border-radius: 10px
                 border: 1px solid black
                 transition: all 0.15s ease-in-out
+                overflow: hidden
                 &:hover
                     cursor: pointer
                     box-shadow: 0px 0px 4px 1px grey
             .endDiv
                 margin: 20px 20px
             .thirdDiv
-                height: 200px
-                width: 200px
+                height: 170px
+                width: 170px
                 border-radius: 10px
                 border: 1px solid black
                 transition: all 0.15s ease-in-out
+                overflow: hidden
                 &:hover
                     cursor: pointer
                     box-shadow: 0px 0px 4px 1px grey
             .activeDiv
                 border: 1px solid green
                 box-shadow: 0px 0px 2px 2px green
+                img
+                    transform: scale(1.03)
         select
             appearance: none
             border: 2px solid rgba(#7c7c7c, 0.2)
@@ -236,12 +255,15 @@
             margin: 50px 50px
             position: relative
             background-color: white
+
             span
-                // font-size: 13px
                 display: block
                 position: absolute
                 width: 100%
                 top: -31px
+        .ringChoice
+            padding-top: 20px
+            margin-top: 0
         .calcBut
             border-radius: 5px
             background-color: green
