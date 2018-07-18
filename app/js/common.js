@@ -300,10 +300,7 @@ function disappearPick(pick){
     }, 300)
 }
 function appearPick(pick){
-    if (pick == document.querySelector('.thirdPick') || pick == document.querySelector('.fourthPick')) {
-        document.querySelector('.display').style.display="block"
-        setTimeout(()=> document.querySelector('.display').style.opacity = "1", 200 )
-    }
+
     pick.style.display = "flex";
     setTimeout(()=> pick.style.opacity = "1", 200 )
 
