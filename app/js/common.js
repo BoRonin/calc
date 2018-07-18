@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    clearCart()
+    // clearCart()
     const calc = document.querySelector('.calc')
     const lineStepOne = document.querySelector('.statusLineStepOne')
     const lineStepTwo = document.querySelector('.statusLineStepTwo')
