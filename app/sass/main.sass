@@ -9,7 +9,7 @@
     display: flex
     flex-direction: column
     width: 1200px
-    height: 1800px
+    height: 2500px
     text-align: center
     .calch1
         color: #A04050
@@ -73,6 +73,10 @@
         background-color: rgba(#A04050, 0.2)
         &:hover
             box-shadow: none
+.descText
+    // display: block
+    font-size: 24px
+    font-weight: 300
 .colorBox
     height: auto
     width: 100%
@@ -103,21 +107,20 @@
         font-size: 1.2rem
 
 
-    .carType
+    .carType, .bigTyles
         display: inline-block
         border: 2px solid #166583
         position: relative
         margin: 10px
         width: 260px
         height: 260px
-        // background-color: #c2c3c4
         overflow: hidden
 
         text-align: center
         user-select: none
         cursor: pointer
         transition: all .25s ease-in-out
-        h1
+        p
             font-size: 22px
             font-weight: 400
             background-color: #166583
@@ -136,13 +139,13 @@
             box-shadow: 0 0 6px 1px
             img
                 transform: translateY(10%)
-            h1
+            p
                 color: white
 
-    .carType2
-        border-radius: 20px
-        width: 150px
-        height: 150px
+    // .carType2
+    //     border-radius: 20px
+    //     width: 150px
+    //     height: 150px
 
 
     .centerImg img
@@ -158,9 +161,8 @@
         margin: 0 auto
         padding: 0
         transition: all 0.3s ease-in-out
-        p
-            font-size: 24px
-            font-weight: 300
+        flex-direction: column
+
         .activePick
             background-color: #a3a3a3
             transform: scale(1.2)
@@ -228,8 +230,9 @@
         display: flex
         width: 100%
         flex-direction: row
-        .lengthChoice
-            padding-top: 2em
+        margin: 0 auto
+
+
 
 
         img
@@ -243,35 +246,72 @@
             display: flex
             flex-direction: row
             width: 100%
-            justify-content: space-evenly
+            justify-content: center
             margin: 20px auto
-            flex-flow: row wrap
+            flex-flow: wrap
+
 
             .fourthDiv
-                height: 120px
-                width: 120px
-                border-radius: 10px
-                border: 1px solid black
                 transition: all 0.15s ease-in-out
+                border: 2px solid #166583
+                position: relative
+                margin: 10px
+                width: 260px
+                height: 260px
                 overflow: hidden
+                p
+                    font-size: 22px
+                    font-weight: 400
+                    background-color: #166583
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    height: 60px
+                    position: absolute
+                    color: white
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    margin-bottom: 0px
+                    transition: all .25s ease-in-out
                 &:hover
                     cursor: pointer
                     box-shadow: 0px 0px 4px 1px grey
-            .endDiv
-                margin: 20px 20px
+
             .thirdDiv
-                height: 170px
-                width: 170px
-                border-radius: 10px
-                border: 1px solid black
-                transition: all 0.15s ease-in-out
+                // height: 170px
+                // width: 170px
+                // border-radius: 10px
+                // border: 1px solid black
+                // transition: all 0.15s ease-in-out
+                // overflow: hidden
+                border: 2px solid #166583
+                position: relative
+                margin: 10px
+                width: 260px
+                height: 260px
                 overflow: hidden
+                p
+                    font-size: 22px
+                    font-weight: 400
+                    background-color: #166583
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    height: 60px
+                    position: absolute
+                    color: white
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    margin-bottom: 0px
+                    transition: all .25s ease-in-out
                 &:hover
                     cursor: pointer
                     box-shadow: 0px 0px 4px 1px grey
             .activeDiv
-                border: 1px solid green
-                box-shadow: 0px 0px 2px 2px green
+                // border: 1px solid green
+                // box-shadow: 0px 0px 2px 2px green
                 img
                     transform: scale(1.03)
         select
@@ -286,7 +326,6 @@
             display: flex
             flex-flow: column
 
-        margin: 30px auto
         display: none
         opacity: 0
         flex-direction: column
@@ -295,7 +334,6 @@
         justify-content: center
         .thirdPickChoice
             display: inline-block
-            margin: 50px 50px
             position: relative
             background-color: white
 
