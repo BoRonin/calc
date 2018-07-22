@@ -112,23 +112,55 @@
     flex-direction: row
     justify-content: center
     .colorDiv
-        display: block
-        height: 30px
-        width: 30px
-        border-radius: 7px
+        display: flex
+        height: 60px
+        width: 260px
         border: 2px solid #166583
+        margin-bottom: 40px
         box-sizing: border-box
-        margin: 20px
         transition: all 0.15s ease-in-out
         &:hover
             border: 2px solid #AE485C
-            p
-                color: white
-                background-color: #AE485C
+            .colorDivNumber
+                color: #AE485C
+                &::after
+                    background-color: #AE485C
+            .colorDivName
+                color: #AE485C
         &:not(:last-child)
             margin-right: 40px
-    .activeDiv
-        border: 1px solid green
+        .colorDivPattern
+            width: 60px
+            height: 60px
+        .colorDivNumber
+            display: flex
+            width: 60px
+            height: 56px
+            justify-content: center
+            align-items: center
+            position: relative
+            font-size: 24px
+            font-weight: 400
+            color: #166583
+            transition: all .25s ease-in-out
+            &::after
+                content: ''
+                position: absolute
+                height: 40px
+                width: 1px
+                background-color: #166583
+                right: 0px
+                transition: all .25s ease-in-out
+        .colorDivName
+            transition: all .25s ease-in-out
+            display: flex
+            width: 130px
+            align-items: center
+            padding-left: 10px
+            text-align: left
+            font-size: 14px
+            font-weight: 400
+            color: #166583
 .thirdPickRow
     width: 100%
     display: flex
@@ -212,6 +244,13 @@
             background-color: #a3a3a3
             transform: scale(1.2)
     .activeDiv
+        border: 2px solid #AE485C
+        .colorDivNumber
+            color: #AE485C
+            &::after
+                background-color: #AE485C
+        .colorDivName
+            color: #AE485C
         border: 2px solid #AE485C
         p
             background-color: #AE485C
