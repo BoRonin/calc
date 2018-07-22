@@ -19,7 +19,23 @@
         color: #000000
         font-weight: 300
 
+.calcBut
+    background-color: #AE485C
+    color: white
+    display: flex
+    margin: 0 auto
+    width: 260px
+    height: 60px
+    border: 1px solid #7c7c7c
+    transition: all .2s ease-in-out
+    justify-content: center
+    align-items: center
 
+    &:hover
+        background-color: white
+        color: #AE485C
+        border-color: #AE485C
+        cursor: pointer
 .statusLine
     display: flex
     padding-top: 20px
@@ -103,6 +119,7 @@
     padding: 0
     display: flex
     flex-direction: column
+    width: 1160px
     span
         font-size: 1.2rem
 
@@ -111,14 +128,13 @@
         display: inline-block
         border: 2px solid #166583
         position: relative
-        margin: 10px
         width: 260px
         height: 260px
         overflow: hidden
-
         text-align: center
         user-select: none
         cursor: pointer
+        box-sizing: border-box
         transition: all .25s ease-in-out
         p
             font-size: 22px
@@ -141,6 +157,8 @@
                 transform: translateY(10%)
             p
                 color: white
+        &:not(:last-child)
+            margin-right: 36px
 
     // .carType2
     //     border-radius: 20px
@@ -202,7 +220,7 @@
             padding-top: 40px
             line-height: 1
         .displayImg
-            margin: 0 40px
+            margin: 0 20px
             width: 560px
             // border: 1px solid #AE485C
             object-fit: contain
@@ -225,7 +243,7 @@
 
 
 
-    .thirdPick, .fourthPick
+    .thirdPick, .fourthPick, .fifthPick
         transition: all 0.3s ease-in-out
         display: flex
         width: 100%
@@ -242,7 +260,7 @@
             &:hover
                 transform: scale(1.03)
 
-        .thirdDivs, .fourthDivs
+        .thirdDivs, .fourthDivs, .fifthDivs
             display: flex
             flex-direction: row
             width: 100%
@@ -291,6 +309,7 @@
                 width: 260px
                 height: 260px
                 overflow: hidden
+                transition: all .25s ease-in-out
                 p
                     font-size: 22px
                     font-weight: 400
@@ -308,10 +327,11 @@
                     transition: all .25s ease-in-out
                 &:hover
                     cursor: pointer
-                    box-shadow: 0px 0px 4px 1px grey
+                    box-shadow: 0px 0px 1px 1px #AE485C
             .activeDiv
-                // border: 1px solid green
-                // box-shadow: 0px 0px 2px 2px green
+                border: 2px solid #AE485C
+                p
+                    background-color: #AE485C
                 img
                     transform: scale(1.03)
         select
@@ -345,22 +365,7 @@
         .ringChoice
             padding-top: 20px
             margin-top: 0
-        .calcBut
-            border-radius: 5px
-            background-color: green
-            color: white
-            display: flex
-            margin: 0 auto
-            width: 150px
-            height: 50px
-            border: 1px solid #7c7c7c
-            transition: all .2s ease-in-out
 
-            &:hover
-                background-color: white
-                color: green
-                border-color: green
-                cursor: pointer
 
             span
                 user-select: none
