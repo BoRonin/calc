@@ -35,9 +35,13 @@ document.addEventListener('DOMContentLoaded', function(){
     })
 
 
+    const toKronsh = document.querySelector('.toKronsh')
+    toKronsh.addEventListener('click', e => {
+        next(e, document.querySelector('.thirdAndAHalfPick'), document.querySelector('.thirdPick'))
+    })
     const toLast = document.querySelector('.toLast')
     toLast.addEventListener('click', e => {
-        next(e, document.querySelector('.fourthPick'), document.querySelector('.thirdPick'))
+        next(e, document.querySelector('.fourthPick'), document.querySelector('.thirdAndAHalfPick'))
     })
     const toTrashButton = document.querySelector('.toTrash')
     toTrashButton.addEventListener('click', () => {
