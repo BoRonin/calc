@@ -18,11 +18,22 @@ document.addEventListener('DOMContentLoaded', function(){
     const calcButton = document.querySelector('.toCarType')
     calcButton.addEventListener('click', e => {
         next(e, collectionSelect, carSelect)
+        setTimeout(function () {
+            appearPick(calcButton2)
+        }, 300)
         disappearPick(calcButton)
     })
 
-    const calcButton2 = document.querySelector('.secondPick')
-    calcButton2.addEventListener('click', e => activatePick(e, document.querySelector('.thirdPick')))
+    const calcButton2 = document.querySelector('.toOther')
+    calcButton2.addEventListener('click', e => {
+        disappearPick(calcButton2)
+        next(e, document.querySelector('.other'), collectionSelect)
+
+        setTimeout(function(){
+            appearPick(document.querySelector('.thirdPick'))
+        }, 300)
+    })
+
 
     const toLast = document.querySelector('.toLast')
     toLast.addEventListener('click', e => {
@@ -52,13 +63,19 @@ document.addEventListener('DOMContentLoaded', function(){
     let endActiveDiv = endSelect.getElementsByTagName('div')[0]
     let ringActiveDiv = ringSelect.getElementsByTagName('div')[0]
 
-    collectionSelect
+    collectionSelect.addEventListener('click', e => {
+        const elem = e.target.closest('.carType2')
+        if (!elem) return
+        if (elem.classList.contains('activeDiv')) return
+        let dValue = elem.getAttribute('data-value')
+        console.log(elem.parentElement)
+        activateNode(elem.parentElement, elem)
+    })
     carSelect.addEventListener('click', e => {
         const elem = e.target.closest('.carType')
         if (!elem) return
         if (elem.classList.contains('activeDiv')) return
         let dValue = elem.getAttribute('data-value')
-        console.log(elem.parentElement)
         activateNode(elem.parentElement, elem)
     })
     lengthSelect.addEventListener('change', () => {
@@ -193,6 +210,24 @@ document.addEventListener('DOMContentLoaded', function(){
     })
 })
 function colorCorrection(paps, lastLetters, index){
+    if (paps === document.querySelector('.endDivs')) {
+        let childDivs = paps.getElementsByTagName('div')
+        for (let child in childDivs){
+            if (typeof childDivs[child] === 'object') {
+                if (childDivs[child].classList.contains('fourthDiv')){
+                    text = [...childDivs[child].getAttribute('data-value')]
+                        text[6] = lastLetters[0]
+                        text[7] = lastLetters[1]
+                        text[8] = lastLetters[2]
+                    childDivs[child].setAttribute('data-value', text.join(''))
+                    if (childDivs[child].classList.contains('activeDiv')) {
+                        allProds[index].ts = Number(childDivs[child].getAttribute('data-value'))
+                    }
+                }
+            }
+        }
+        return
+    }
     let childDivs = paps.getElementsByTagName('div')
     let text = null
     for (let child in childDivs) {
@@ -270,10 +305,7 @@ function activatePick(e, toAppear){
     if (! elem ) return
     console.log("hey")
     const elemparent = elem.parentElement;
-    let typeText = elem.children[1].innerHTML;
-    let typeCircle = document.querySelector('.statusLineStepOne')
-    let typeCircle2 = document.querySelector('.statusLineStepTwo')
-    let text = "Тип"
+
 
     elem.classList.add("activePick")
     // if (elemparent.classList.contains('secondPick')) {
@@ -307,8 +339,12 @@ function disappearPick(pick){
     }, 300)
 }
 function appearPick(pick){
-
-    pick.style.display = "flex";
+    if (pick.classList.contains('calcBut')) {
+        pick.style.display = "flex";
+        setTimeout(()=> pick.style.opacity = "1", 200 )
+        return
+    }
+    pick.style.display = "block";
     setTimeout(()=> pick.style.opacity = "1", 200 )
 
 }

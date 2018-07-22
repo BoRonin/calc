@@ -28,12 +28,12 @@
     letter-spacing: 5px
     display: flex
     margin: 0 auto
-    margin-top: 80px
+    margin-top: 40px
     width: 260px
     height: 60px
     border: 2px solid #AE485C
     border-radius: 10px
-    transition: all .2s ease-in-out
+    transition: all .15s ease-in-out
     user-select: none
     justify-content: center
     align-items: center
@@ -44,6 +44,10 @@
         color: white
         border: 2px solid #AE485C
         cursor: pointer
+.toOther
+    display: none
+    opacity: 0
+    transition: all .15s ease-in-out
 .statusLine
     display: flex
     padding-top: 20px
@@ -112,15 +116,27 @@
         height: 30px
         width: 30px
         border-radius: 7px
-        border: 1px solid black
+        border: 2px solid #166583
+        box-sizing: border-box
         margin: 20px
         transition: all 0.15s ease-in-out
         &:hover
-            cursor: pointer
-            box-shadow: 0px 0px 4px 1px grey
+            border: 2px solid #AE485C
+            p
+                color: white
+                background-color: #AE485C
+        &:not(:last-child)
+            margin-right: 40px
     .activeDiv
         border: 1px solid green
-        box-shadow: 0px 0px 2px 2px green
+.thirdPickRow
+    width: 100%
+    display: flex
+    flex-flow: column
+.fourthPickRow
+    width: 100%
+    display: flex
+    flex-flow: row
 .mainCalc
     margin: 50px auto
     height: 100%
@@ -128,11 +144,12 @@
     display: flex
     flex-direction: column
     width: 1160px
+    align-items: flex-start
     span
         font-size: 1.2rem
 
 
-    .carType, .bigTyles
+    .carType, .bigTyles, .carType2
         display: inline-block
         border: 2px solid #166583
         position: relative
@@ -140,6 +157,7 @@
         height: 260px
         overflow: hidden
         text-align: center
+        margin-bottom: 40px
         user-select: none
         cursor: pointer
         box-sizing: border-box
@@ -161,15 +179,12 @@
             margin-bottom: 0px
             transition: all .25s ease-in-out
         &:hover
-            box-shadow: 0 0 6px 1px #AE485C
             border: 2px solid #AE485C
-            img
-                transform: translateY(10%)
             p
                 color: white
                 background-color: #AE485C
         &:not(:last-child)
-            margin-right: 36px
+            margin-right: 40px
 
     // .carType2
     //     border-radius: 20px
@@ -186,11 +201,11 @@
         transform: translateY(10%)
         transition: all .25s ease-in-out
 
-    .firstPick, .secondPick
-        margin: 0 auto
-        padding: 0
-        transition: all 0.3s ease-in-out
-        flex-direction: column
+    // .firstPick, .secondPick
+    //     margin: 0 auto
+    //     padding: 0
+    //     transition: all 0.3s ease-in-out
+    //     flex-direction: column
 
         .activePick
             background-color: #a3a3a3
@@ -259,97 +274,94 @@
 
 
 
-    .thirdPick, .fourthPick, .fifthPick
+    .thirdPick, .fourthPick, .thirdAndAHalfPick
         transition: all 0.3s ease-in-out
         display: flex
         width: 100%
         flex-direction: row
-        margin: 0 auto
-
-
-
-
+        // margin: 0 auto
+        box-sizing: border-box
         img
             width: 100%
             transition: all .25s ease-in-out
-            border-radius: 8px
-            &:hover
-                transform: scale(1.03)
+            // border-radius: 8px
+            // &:hover
+            //     transform: scale(1.03)
 
-        .thirdDivs, .fourthDivs, .fifthDivs
-            display: flex
-            flex-direction: row
-            width: 100%
-            justify-content: center
-            margin: 20px auto
-            flex-flow: wrap
+        // .thirdDivs, .fourthDivs, .fifthDivs
+            // display: flex
+            // flex-direction: row
+            // width: 100%
+            // justify-content: center
+            // margin: 20px auto
+            // flex-flow: wrap
 
 
-            .fourthDiv
-                transition: all 0.15s ease-in-out
-                border: 2px solid #166583
-                position: relative
-                margin: 10px
-                width: 260px
-                height: 260px
-                overflow: hidden
-                p
-                    font-size: 22px
-                    font-weight: 400
-                    background-color: #166583
-                    display: flex
-                    justify-content: center
-                    align-items: center
-                    height: 60px
-                    position: absolute
-                    color: white
-                    left: 0
-                    right: 0
-                    bottom: 0
-                    margin-bottom: 0px
-                    transition: all .25s ease-in-out
-                &:hover
-                    cursor: pointer
-                    box-shadow: 0px 0px 4px 1px grey
+            // .fourthDiv
+            //     transition: all 0.15s ease-in-out
+            //     border: 2px solid #166583
+            //     position: relative
+            //     margin: 10px
+            //     width: 260px
+            //     height: 260px
+            //     overflow: hidden
+            //     p
+            //         font-size: 22px
+            //         font-weight: 400
+            //         background-color: #166583
+            //         display: flex
+            //         justify-content: center
+            //         align-items: center
+            //         height: 60px
+            //         position: absolute
+            //         color: white
+            //         left: 0
+            //         right: 0
+            //         bottom: 0
+            //         margin-bottom: 0px
+            //         transition: all .25s ease-in-out
+            //     &:hover
+            //         cursor: pointer
+            //         box-shadow: 0px 0px 4px 1px grey
 
-            .thirdDiv
-                // height: 170px
-                // width: 170px
-                // border-radius: 10px
-                // border: 1px solid black
-                // transition: all 0.15s ease-in-out
-                // overflow: hidden
-                border: 2px solid #166583
-                position: relative
-                margin: 10px
-                width: 260px
-                height: 260px
-                overflow: hidden
-                transition: all .25s ease-in-out
-                p
-                    font-size: 22px
-                    font-weight: 400
-                    background-color: #166583
-                    display: flex
-                    justify-content: center
-                    align-items: center
-                    height: 60px
-                    position: absolute
-                    color: white
-                    left: 0
-                    right: 0
-                    bottom: 0
-                    margin-bottom: 0px
-                    transition: all .25s ease-in-out
-                &:hover
-                    cursor: pointer
-                    box-shadow: 0px 0px 1px 1px #AE485C
-            .activeDiv
-                border: 2px solid #AE485C
-                p
-                    background-color: #AE485C
-                img
-                    transform: scale(1.03)
+            // .thirdDiv
+            //     // height: 170px
+            //     // width: 170px
+            //     // border-radius: 10px
+            //     // border: 1px solid black
+            //     // transition: all 0.15s ease-in-out
+            //     // overflow: hidden
+            //     border: 2px solid #166583
+            //     position: relative
+            //     margin: 10px
+            //     width: 260px
+            //     height: 260px
+            //     overflow: hidden
+            //     transition: all .25s ease-in-out
+            //     p
+            //         font-size: 22px
+            //         font-weight: 400
+            //         background-color: #166583
+            //         display: flex
+            //         justify-content: center
+            //         align-items: center
+            //         height: 60px
+            //         position: absolute
+            //         color: white
+            //         left: 0
+            //         right: 0
+            //         bottom: 0
+            //         margin-bottom: 0px
+            //         transition: all .25s ease-in-out
+            //     &:hover
+            //         cursor: pointer
+            //         box-shadow: 0px 0px 1px 1px #AE485C
+            // .activeDiv
+            //     border: 2px solid #AE485C
+            //     p
+            //         background-color: #AE485C
+            //     img
+            //         transform: scale(1.03)
         select
             appearance: none
             border: 2px solid rgba(#7c7c7c, 0.2)
@@ -357,14 +369,10 @@
             padding: 0.5em 1.5em
             background-color: rgba(#7c7c7c, 0.3)
             width: 200px
-        .thirdPickRow
-            width: 100%
-            display: flex
-            flex-flow: column
 
         display: none
         opacity: 0
-        flex-direction: column
+        // flex-direction: column
         width: 100%
         align-items: center
         justify-content: center
@@ -377,12 +385,4 @@
                 display: block
                 position: absolute
                 width: 100%
-                top: -31px
-        .ringChoice
-            padding-top: 20px
-            margin-top: 0
-
-
-            span
-                user-select: none
-                margin: auto
+                // top: -31px
