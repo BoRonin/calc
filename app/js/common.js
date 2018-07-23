@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    // clearCart()
+    clearCart()
     const calc = document.querySelector('.calc')
     const lineStepOne = document.querySelector('.statusLineStepOne')
     const lineStepTwo = document.querySelector('.statusLineStepTwo')
@@ -312,20 +312,6 @@ function activatePick(e, toAppear){
 
 
     elem.classList.add("activePick")
-    // if (elemparent.classList.contains('secondPick')) {
-    //     typeCircle = document.querySelector('.statusLineStepTwo')
-    //     typeCircle2 = document.querySelector('.statusLineStepThree')
-    //     text = "Серия"
-    // } else if (elemparent.classList.contains('thirdPick')) {
-    //     typeCircle = document.querySelector('.statusLineStepThree')
-    //     typeCircle2 = document.querySelector('.statusLineStepFour')
-    //     text = "Профиль и кронштейн"
-    //     typeText = ""
-    // }
-    // typeCircle.classList.remove('statusLineStepNext')
-    // typeCircle.classList.add('statusLineStepActive')
-    // typeCircle2.classList.add('statusLineStepNext')
-    // typeCircle.innerHTML = `&#10004; <span>${text}<br> ${typeText}</span>`
     disappearPick(elemparent)
     setTimeout(function () {
         appearPick(toAppear)
