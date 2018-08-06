@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    clearCart()
+    // clearCart()
     const calc = document.querySelector('.calc')
     const lineStepOne = document.querySelector('.statusLineStepOne')
     const lineStepTwo = document.querySelector('.statusLineStepTwo')
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const carSelect = document.querySelector('.firstPick')
     const colorSelect = document.querySelector('.colorBox')
     const lengthSelect = document.querySelector('.length')
+    const lengthSelect2 = document.querySelector('.length2')
     const profileSelect = document.querySelector('.profileDivs')
     const kronshSelect = document.querySelector('.kronshDivs')
     const endSelect = document.querySelector('.endDivs')
@@ -18,10 +19,11 @@ document.addEventListener('DOMContentLoaded', function(){
     const calcButton = document.querySelector('.toCarType')
     calcButton.addEventListener('click', e => {
         next(e, collectionSelect, carSelect)
+        disappearPick(calcButton)
         setTimeout(function () {
             appearPick(calcButton2)
         }, 300)
-        disappearPick(calcButton)
+        
     })
 
     const calcButton2 = document.querySelector('.toOther')
@@ -59,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }, 300)
 
     })
-
     //activeDivs
     let colorActiveDiv = colorSelect.getElementsByTagName('div')[0]
     let profileActiveDiv = profileSelect.getElementsByTagName('div')[0]
@@ -81,6 +82,16 @@ document.addEventListener('DOMContentLoaded', function(){
         if (elem.classList.contains('activeDiv')) return
         let dValue = elem.getAttribute('data-value')
         activateNode(elem.parentElement, elem)
+    })
+    lengthSelect2.addEventListener('click', e =>{
+        const elem = e.target.closest('.lengthDiv')
+        if(!elem) return
+        if(elem.classList.contains('activeDiv')) return
+        const temp = [...profileActiveDiv.getAttribute('data-value')]
+        const finalTemp = `${temp[0]}${temp[1]}${temp[2]}${elem.getAttribute('data-value')}${temp[6]}${temp[7]}${temp[8]}`
+        console.log(finalTemp)
+        profileActiveDiv.setAttribute('data-value', finalTemp)
+        console.log(profileActiveDiv.getAttribute('data-value'))
     })
     lengthSelect.addEventListener('change', () => {
         const temp = [...profileActiveDiv.getAttribute('data-value')]
